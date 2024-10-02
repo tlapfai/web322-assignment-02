@@ -21,6 +21,8 @@ app.listen(HTTP_PORT, () => {
   projectData.initialize();
 });
 
+app.use(express.static(__dirname + '/data'));
+
 app.get("/", (req, res) => {
   res.send("Assignment 2: Lap Fai Tam - 126575232");
 });
