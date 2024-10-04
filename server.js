@@ -18,7 +18,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 
 app.listen(HTTP_PORT, () => {
   console.log(`Server running on port ${HTTP_PORT}`);
-  projectData.initialize();
+  projectData.initialize().then((log1)=>{console.log(log1);});
 });
 
 app.use(express.static(__dirname + '/data'));
