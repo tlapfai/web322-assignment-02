@@ -18,10 +18,10 @@ const HTTP_PORT = process.env.PORT || 8080;
 
 app.listen(HTTP_PORT, () => {
   console.log(`Server running on port ${HTTP_PORT}`);
-  projectData.initialize().then((log1)=>{console.log(log1);}).catch((log1)=>{console.log(log1);});
+  projectData.initialize();
 });
 
-app.use(express.static(__dirname + '/data'));
+//app.use(express.static(__dirname + '/data'));
 
 app.get("/", (req, res) => {
   res.send("Assignment 2: Lap Fai Tam - 126575232");
