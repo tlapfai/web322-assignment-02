@@ -1,9 +1,9 @@
 const path = require("path");
 //const projectData = require("../data/projectData");
 //const sectorData = require("../data/sectorData");
-// use path to get the correct path to the data files
-const projectData = require(path.resolve("data/projectData"));
-const sectorData = require(path.resolve("data/sectorData"));
+// use path.join to resolve the path to the data files
+const projectData = require(path.join(__dirname, "../data/projectData"));
+const sectorData = require(path.join(__dirname, "../data/sectorData"));
 
 let projects = [];
 
