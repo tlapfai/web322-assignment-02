@@ -15,6 +15,7 @@ function initialize() {
       .sector_name,
   }));
   */
+  console.log(projectData);
   return new Promise((resolve, reject) => {
     if (projectData.length > 0) {
       projects = projectData.map((project) => ({
