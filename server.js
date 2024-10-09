@@ -27,6 +27,13 @@ app.get("/", (req, res) => {
   res.send("Assignment 2: Lap Fai Tam - 126575232");
 });
 
+let needInit = true;
+app.use((req, res, next) => {
+  if (needInit) {
+    projectData.initialize();
+    needInit = false;
+  });
+
 app.get("/solutions/projects", (req, res) => {
   projectData
     .getProjects()
