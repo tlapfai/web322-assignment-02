@@ -32,7 +32,9 @@ app.use(async (req, res, next) => {
   if (needInit) {
     await projectData.initialize();
     needInit = false;
-  });
+  }
+    next();
+});
 
 app.get("/solutions/projects", (req, res) => {
   projectData
