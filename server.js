@@ -28,9 +28,9 @@ app.get("/", (req, res) => {
 });
 
 let needInit = true;
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   if (needInit) {
-    projectData.initialize();
+    await projectData.initialize();
     needInit = false;
   });
 
