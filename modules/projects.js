@@ -1,9 +1,5 @@
-const path = require("path");
-//const projectData = require("../data/projectData");
-//const sectorData = require("../data/sectorData");
-// use path.join to resolve the path to the data files
-const projectData = require(path.join(__dirname, "../data/projectData"));
-const sectorData = require(path.join(__dirname, "../data/sectorData"));
+const projectData = require("../data/projectData");
+const sectorData = require("../data/sectorData");
 
 let projects = [];
 
@@ -15,7 +11,6 @@ function initialize() {
       .sector_name,
   }));
   */
-  console.log(projectData);
   return new Promise((resolve, reject) => {
     if (projectData.length > 0) {
       projects = projectData.map((project) => ({

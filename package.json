@@ -4,12 +4,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "tw:build": "tailwindcss build -i ./public/css/tailwind.css -o ./public/css/main.css", 
+    "start": "npm run tw:build && node server.js"
   },
   "author": "Lap Fai Tam",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "daisyui": "^4.12.13",
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.13"
   }
 }
