@@ -15,16 +15,22 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
+let initialized = false;
 
 app.listen(HTTP_PORT, () => {
   console.log(`Server running on port ${HTTP_PORT}`);
-  projectData.initialize();
+  //projectData.initialize();
 });
 
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
   //res.send("Assignment 2: Lap Fai Tam - 126575232");
+  if (!initialized) {
+    projectData.initialize().then(() => {
+      initialized = true;
+    });
+  }
   res.sendFile(path.join(__dirname, "/views/home.html"));
 });
 
