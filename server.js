@@ -24,13 +24,16 @@ app.listen(HTTP_PORT, () => {
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", (req, res) => {
-  //res.send("Assignment 2: Lap Fai Tam - 126575232");
+app.use((req, res, next) => {
   if (!initialized) {
     projectData.initialize().then(() => {
       initialized = true;
     });
   }
+  next();
+});
+
+app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/views/home.html"));
 });
 
