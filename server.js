@@ -21,22 +21,37 @@ app.listen(HTTP_PORT, () => {
   projectData.initialize();
 });
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
   //res.send("Assignment 2: Lap Fai Tam - 126575232");
   res.sendFile(path.join(__dirname, "/views/home.html"));
 });
 
+app.get("/about", (req, res) => {
+  res.sendFile(path.join(__dirname, "/views/about.html"));
+});
+
 app.get("/solutions/projects", (req, res) => {
-  projectData
-    .getProjects()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
+  if (req.query.sector) {
+    projectData
+      .getProjectsBySector(req.query.sector)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
+      });
+  } else {
+    projectData
+      .getProjects()
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
+      });
+  }
 });
 
 app.get("/solutions/projects/:id(\\d+)", (req, res) => {
@@ -46,17 +61,6 @@ app.get("/solutions/projects/:id(\\d+)", (req, res) => {
       res.send(data);
     })
     .catch((err) => {
-      res.send(err);
-    });
-});
-
-app.get("/solutions/projects/:sector([a-zA-Z]+)", (req, res) => {
-  projectData
-    .getProjectsBySector(req.params.sector)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.send(err);
+      res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
     });
 });
