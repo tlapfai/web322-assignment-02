@@ -75,5 +75,5 @@ app.get("/solutions/projects/:id(\\d+)", (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "/public/404.html"));
+  res.status(404).sendFile(path.join(__dirname, "/views/404.html"));
 });
